@@ -7,6 +7,20 @@
     <title>Formulario de registro SCIII</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    
+    <script>
+        const emailInput = document.getElementById('correo');
+        emailInput.addEventListener('input', function () {
+        if (emailInput.checkValidity()) {
+            emailInput.classList.add('valid');
+            emailInput.classList.remove('invalid');
+        } else {
+            emailInput.classList.add('invalid');
+            emailInput.classList.remove('valid');
+        }
+        });
+
+    </script>
    
 </head>
 <body>
@@ -21,7 +35,7 @@
             <input type="text" name="apellido" class="form-input w-100" required/>
 
             <label for="email">email<span><em>(requerido)</em></span></label>
-            <input type="text" name="email" class="form-input w-100" required/>
+            <input type="email" name="email" class="form-input w-100" required/>
             <input type="submit" name="submit" value="Suscribirse" class="btn bg-primary"/>
 
     <?php
