@@ -7,19 +7,18 @@
     <title>Formulario de registro SCIII</title>
     <link rel="stylesheet" href="style.css" type="text/css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    
+
     <script>
         const emailInput = document.getElementById('correo');
-        emailInput.addEventListener('input', function () {
-        if (emailInput.checkValidity()) {
-            emailInput.classList.add('valid');
-            emailInput.classList.remove('invalid');
-        } else {
-            emailInput.classList.add('invalid');
-            emailInput.classList.remove('valid');
-        }
-        });
-
+emailInput.addEventListener('input', function () {
+  if (emailInput.checkValidity()) {
+    emailInput.classList.add('valid');
+    emailInput.classList.remove('invalid');
+  } else {
+    emailInput.classList.add('invalid');
+    emailInput.classList.remove('valid');
+  }
+});
     </script>
    
 </head>
@@ -37,8 +36,26 @@
             <label for="email">email<span><em>(requerido)</em></span></label>
             <input type="email" name="email" class="form-input w-100" required/>
             <input type="submit" name="submit" value="Suscribirse" class="btn bg-primary"/>
+            </form>
 
     <?php
+
+    if(isset($_POST['submit'])){
+        $nombre = $_POST['nombre'];
+        $apellido = $_POST['apellido'];
+        $email = $_POST['email'];
+
+        if(empty($nombre)|| empty($apellido)||empty($email)){
+            header("location: ingrese los datos");
+            exit();
+        }elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+            header("location: el correo no es valido");
+            exit();
+        }else{
+            echo "<h1> Formulario enviado correctamente</h1>";
+        }
+
+    }
 
     if($_POST){
         $nombre = $_POST['nombre'];
@@ -70,7 +87,7 @@
     }
     ?>
 
-        </form>
+        
     </div>
     </div>
 </body>
